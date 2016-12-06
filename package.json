@@ -1,0 +1,20 @@
+{
+  "name": "markdown-api",
+  "version": "1.0.0",
+  "description": "An API for storing markdown documents and rendering the documents in HTML.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eluttrell/markdownAPI.git"
+  },
+  "author": "Elijah E Allstrom-Luttrell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eluttrell/markdownAPI/issues"
+  },
+  "homepage": "https://github.com/eluttrell/markdownAPI#readme"
+}
