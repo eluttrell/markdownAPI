@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/eluttrell/markdownAPI/issues"
   },
-  "homepage": "https://github.com/eluttrell/markdownAPI#readme"
+  "homepage": "https://github.com/eluttrell/markdownAPI#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "hbs": "^4.0.1"
+  }
 }
