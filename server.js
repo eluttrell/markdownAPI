@@ -66,9 +66,24 @@ app.get('/documents', function(req, res) {
           message: 'Requested file not found. ' + err.message
         });
       } else {
-        console.log(files);
         res.json({
           message: files
+        });
+      }
+    });
+});
+
+app.delete('/documents/:filepath', function(req, res) {
+    let filepath = './data/' + req.params.filepath;
+    fs.unlink(filepath, (err) => {
+      if (err) {
+        res.status(404);
+        res.json({
+          message: 'Requested file not found. ' + err.message
+        });
+      } else {
+        res.json({
+          message: 'File was successfully deleted.'
         });
       }
     });
