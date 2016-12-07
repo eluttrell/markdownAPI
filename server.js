@@ -1,7 +1,8 @@
 const fs = require('fs'),
     express = require('express'),
     app = express(),
-    bodyParser = require('body-Parser');
+    bodyParser = require('body-Parser'),
+    marked = require('marked');
 
 app.use(bodyParser.json());
 app.set('view engine', 'hbs');
@@ -26,7 +27,6 @@ app.put('/documents/:filepath', function(req, res) {
 
 app.get('/documents/:filepath', function(req, res) {
     let filepath = './data/' + req.params.filepath;
-    let contents = req.body.contents;
     fs.readFile(filepath, 'utf8', (err, data) => {
       if (err) {
         res.status(404);
@@ -42,8 +42,37 @@ app.get('/documents/:filepath', function(req, res) {
 });
 
 app.get('/documents/:filepath/display', function(req, res) {
+    let filepath = './data/' + req.params.filepath;
+    fs.readFile(filepath, 'utf8', (err, data) => {
+      if (err) {
+        res.status(404);
+        res.json({
+          message: 'Requested file not found. ' + err.message
+        });
+      } else {
+        res.render('display.hbs', {
+          title: req.params.filepath,
+          body: marked(data)
+        });
+      }
+    });
+});
 
-})
+app.get('/documents', function(req, res) {
+    fs.readdir('./data/', (err, files) => {
+      if (err) {
+        res.status(404);
+        res.json({
+          message: 'Requested file not found. ' + err.message
+        });
+      } else {
+        console.log(files);
+        res.json({
+          message: files
+        });
+      }
+    });
+});
 
 app.listen(1337, function() {
   console.log('Listening to 1337');
